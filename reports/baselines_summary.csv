@@ -1,0 +1,5 @@
+model,type,auroc,auprc,brier_score,macro_f1,accuracy
+persistence_forecaster,persistence,,,,,
+logistic_regression_static,static_linear,1.0,1.0,0.006846464224765855,1.0,1.0
+random_forest_static,static_tree_ensemble,1.0,1.0,0.0015489361702127656,1.0,1.0
+lstm_temporal_classifier,temporal_sequence_no_transition,1.0,1.0,4.094991527381353e-05,1.0,1.0

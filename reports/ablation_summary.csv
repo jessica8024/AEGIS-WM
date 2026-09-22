@@ -1,0 +1,5 @@
+Ablation Configuration,Description,AUROC,AUPRC,Brier Score,ECE,Stage F1,State MAE
+Full AEGIS World Model,Full Transformer encoder + Gaussian transition + Multi-task decoders + Rollout consistency,1.0,1.0,0.000e+00,0.0,1.0,12671798275.93
+Ablation: Flow-Only Features,Ablating packet-level header distribution features (masking dimensions 18-35),1.0,1.0,0.000e+00,0.0,0.96,21157966852.57
+Ablation: No Transition Loss (lambda_state=0),Pure discriminative sequence model without next-state Gaussian dynamics,1.0,1.0,2.028e-01,0.3903,0.3877,43084114138.16
+Ablation: LSTM Sequence Encoder,Recurrent LSTM encoder replacing multi-head self-attention,1.0,1.0,1.233e-01,0.349,0.92,35481035172.61

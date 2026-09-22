@@ -1,0 +1,25 @@
+dataset_name: "CIC-IDS-2017"
+dataset_version: "2017-v1"
+dataset_root: "C:/Users/Sathish-PhD/Downloads/MachineLearningCSV/CIC-IDS- 2017"
+
+files:
+  monday_benign: "Monday-WorkingHours.pcap_ISCX.csv"
+  tuesday_bruteforce: "Tuesday-WorkingHours.pcap_ISCX.csv"
+  wednesday_dos: "Wednesday-workingHours.pcap_ISCX.csv"
+  thursday_web: "Thursday-WorkingHours-Morning-WebAttacks.pcap_ISCX.csv"
+  thursday_infiltration: "Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.csv"
+  friday_bot: "Friday-WorkingHours-Morning.pcap_ISCX.csv"
+  friday_portscan: "Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv"
+  friday_ddos: "Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv"
+
+# Chronological and group-aware split strategy
+splits:
+  train:
+    days: ["Monday-WorkingHours.pcap_ISCX.csv", "Tuesday-WorkingHours.pcap_ISCX.csv", "Wednesday-workingHours.pcap_ISCX.csv"]
+    description: "Benign baseline, Patator brute force (Initial Access), and DoS attacks (Impact)"
+  validation:
+    days: ["Thursday-WorkingHours-Morning-WebAttacks.pcap_ISCX.csv", "Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.csv"]
+    description: "Web attacks (Initial Access) and Infiltration (Lateral Movement)"
+  test:
+    days: ["Friday-WorkingHours-Morning.pcap_ISCX.csv", "Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv"]
+    description: "Botnet C2 (Command & Control) and PortScan (Reconnaissance) - untouched held-out evaluation"

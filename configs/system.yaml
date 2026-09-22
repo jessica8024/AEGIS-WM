@@ -1,0 +1,50 @@
+version: "0.1.0"
+storage_dir: "data"
+model_checkpoint_dir: "models"
+
+ingestion:
+  active_timeout_seconds: 120.0
+  inactive_timeout_seconds: 15.0
+  max_packets_per_flow: 10000
+  bpf_filter: ""
+  max_queue_size: 50000
+  capture_buffer_size_mb: 128
+
+windowing:
+  window_size_seconds: 5.0
+  context_length: 12
+  forecast_horizon: 6
+  slide_step_seconds: 5.0
+  pseudonym_salt: "aegis_wm_secure_local_salt_2026"
+
+model:
+  name: "TemporalWorldModel"
+  feature_dim: 36
+  latent_dim: 64
+  hidden_dim: 128
+  num_layers: 2
+  num_heads: 4
+  dropout: 0.1
+  encoder_type: "transformer"
+  log_var_min: -7.0
+  log_var_max: 2.0
+
+training:
+  batch_size: 32
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  epochs: 30
+  early_stopping_patience: 5
+  scheduled_sampling_k: 10.0
+  lambda_state: 1.0
+  lambda_stage: 1.0
+  lambda_risk: 1.0
+  lambda_consistency: 0.5
+  device: "auto"
+
+policy:
+  risk_threshold_warning: 0.45
+  risk_threshold_critical: 0.70
+  min_persistence_windows: 2
+  max_uncertainty_threshold: 0.40
+  min_supporting_flows: 1

@@ -1,0 +1,478 @@
+{
+  "persistence_forecaster": {
+    "model_type": "persistence",
+    "description": "Next state equals current observed state S[t]",
+    "state_forecast": {
+      "overall_mae": 555732.8125,
+      "overall_rmse": 8549996.0,
+      "mae_by_horizon": [
+        159410.234375,
+        318212.71875,
+        476996.90625,
+        635300.5625,
+        793263.5,
+        951212.875
+      ],
+      "rmse_by_horizon": [
+        4547807.0,
+        6446258.0,
+        7906593.5,
+        9141603.0,
+        10228307.0,
+        11210548.0
+      ],
+      "rollout_degradation_curve": [
+        4547807.0,
+        6446258.0,
+        7906593.5,
+        9141603.0,
+        10228307.0,
+        11210548.0
+      ]
+    }
+  },
+  "logistic_regression_static": {
+    "model_type": "static_linear",
+    "description": "Logistic regression on current window S[t]",
+    "infiltration_metrics": {
+      "auroc": 1.0,
+      "auprc": 1.0,
+      "brier_score": 0.006846464224765855,
+      "expected_calibration_error": 0.028559689481594222,
+      "threshold_used": 0.5,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1_score": 0.0,
+      "false_positive_rate": 0.0,
+      "true_positives": 0,
+      "false_positives": 0,
+      "true_negatives": 47,
+      "false_negatives": 0
+    },
+    "stage_metrics": {
+      "macro_f1": 1.0,
+      "weighted_f1": 1.0,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0,
+      "precision_per_class": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "recall_per_class": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "confusion_matrix": [
+        [
+          47,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ]
+    }
+  },
+  "random_forest_static": {
+    "model_type": "static_tree_ensemble",
+    "description": "Random forest on current window S[t]",
+    "infiltration_metrics": {
+      "auroc": 1.0,
+      "auprc": 1.0,
+      "brier_score": 0.0015489361702127656,
+      "expected_calibration_error": 0.017872340425531912,
+      "threshold_used": 0.5,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1_score": 0.0,
+      "false_positive_rate": 0.0,
+      "true_positives": 0,
+      "false_positives": 0,
+      "true_negatives": 47,
+      "false_negatives": 0
+    },
+    "stage_metrics": {
+      "macro_f1": 1.0,
+      "weighted_f1": 1.0,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0,
+      "precision_per_class": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "recall_per_class": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "confusion_matrix": [
+        [
+          47,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ]
+    }
+  },
+  "lstm_temporal_classifier": {
+    "model_type": "temporal_sequence_no_transition",
+    "description": "LSTM sequence model without next-state transition loss",
+    "infiltration_metrics": {
+      "auroc": 1.0,
+      "auprc": 1.0,
+      "brier_score": 4.094991527381353e-05,
+      "expected_calibration_error": 0.006393734365701675,
+      "threshold_used": 0.5,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1_score": 0.0,
+      "false_positive_rate": 0.0,
+      "true_positives": 0,
+      "false_positives": 0,
+      "true_negatives": 47,
+      "false_negatives": 0
+    },
+    "stage_metrics": {
+      "macro_f1": 1.0,
+      "weighted_f1": 1.0,
+      "accuracy": 1.0,
+      "balanced_accuracy": 1.0,
+      "precision_per_class": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "recall_per_class": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "confusion_matrix": [
+        [
+          47,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ]
+    }
+  }
+}

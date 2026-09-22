@@ -1,0 +1,22 @@
+name: "TemporalWorldModel"
+architecture: "Transformer-GaussianNLL"
+feature_dim: 36
+latent_dim: 64
+hidden_dim: 128
+num_layers: 2
+num_heads: 4
+dropout: 0.1
+encoder_type: "transformer"
+log_var_min: -7.0
+log_var_max: 2.0
+num_stages: 9
+context_length: 12
+forecast_horizon: 6
+scheduled_sampling_k: 10.0
+use_monte_carlo: false
+mc_trajectories: 20
+loss_weights:
+  lambda_state: 1.0
+  lambda_stage: 1.0
+  lambda_risk: 1.0
+  lambda_consistency: 0.5

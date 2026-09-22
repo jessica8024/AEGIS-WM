@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Node & Frontend
+node_modules/
+apps/analyst-console/node_modules/
+
+# Runtime data (keep structure, ignore transient raw captures)
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*.parquet
+data/aegis_metadata.db
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,38 @@
+{
+  "Full AEGIS World Model": {
+    "description": "Full Transformer encoder + Gaussian transition + Multi-task decoders + Rollout consistency",
+    "auroc": 1.0,
+    "auprc": 1.0,
+    "brier_score": 0.0,
+    "ece": 0.0,
+    "stage_macro_f1": 1.0,
+    "state_mae": 12671798275.930367
+  },
+  "Ablation: Flow-Only Features": {
+    "description": "Ablating packet-level header distribution features (masking dimensions 18-35)",
+    "auroc": 1.0,
+    "auprc": 1.0,
+    "brier_score": 0.0,
+    "ece": 0.0,
+    "stage_macro_f1": 0.96,
+    "state_mae": 21157966852.57266
+  },
+  "Ablation: No Transition Loss (lambda_state=0)": {
+    "description": "Pure discriminative sequence model without next-state Gaussian dynamics",
+    "auroc": 1.0,
+    "auprc": 1.0,
+    "brier_score": 0.20277211101165674,
+    "ece": 0.3902835167936503,
+    "stage_macro_f1": 0.38775,
+    "state_mae": 43084114138.163246
+  },
+  "Ablation: LSTM Sequence Encoder": {
+    "description": "Recurrent LSTM encoder replacing multi-head self-attention",
+    "auroc": 1.0,
+    "auprc": 1.0,
+    "brier_score": 0.12330457271963252,
+    "ece": 0.34895665531462805,
+    "stage_macro_f1": 0.92,
+    "state_mae": 35481035172.60503
+  }
+}

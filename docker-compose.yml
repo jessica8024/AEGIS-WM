@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  aegis-wm:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: aegis-wm:latest
+    container_name: aegis_wm_core
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      - aegis_data:/app/data
+      - ./models:/app/models:ro
+      - ./reports:/app/reports
+    environment:
+      - OPENBLAS_NUM_THREADS=1
+      - MKL_NUM_THREADS=1
+      - OMP_NUM_THREADS=1
+      - AEGIS_ENV=production
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/v1/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+
+volumes:
+  aegis_data:
+    driver: local
