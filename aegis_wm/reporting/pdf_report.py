@@ -7,6 +7,7 @@ from reportlab.lib import colors
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.platypus import HRFlowable, KeepTogether, Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
+from aegis_wm.common.logger import logger
 from aegis_wm.schemas.alert import AlertRecord
 from aegis_wm.schemas.explanation import ExplanationResult
 from aegis_wm.schemas.forecast import ForecastTrajectory

@@ -1,8 +1,10 @@
 import {
   AlertRecord,
   AnalysisJob,
+  CaptureStats,
   ExplanationResult,
   FlowRecord,
+  ReplayStatus,
   TimelinePayload,
   TopologyLink,
   TopologyNode,
@@ -65,8 +67,12 @@ export async function fetchFlows(
   return res.json();
 }
 
-export async function fetchHosts(id: string): Promise<{ nodes: TopologyNode[]; links: TopologyLink[] }> {
-  const res = await fetch(`${BASE_URL}/analyses/${id}/hosts`);
+export async function fetchHosts(id: string, port?: number): Promise<{ nodes: TopologyNode[]; links: TopologyLink[] }> {
+  let url = `${BASE_URL}/analyses/${id}/hosts`;
+  if (port !== undefined && port !== null) {
+    url += `?port=${port}`;
+  }
+  const res = await fetch(url);
   if (!res.ok) return { nodes: [], links: [] };
   return res.json();
 }
@@ -109,8 +115,38 @@ export async function startLiveCapture(interfaceName: string, filter: string): P
   return res.json();
 }
 
-export async function stopLiveCapture(): Promise<any> {
-  const res = await fetch(`${BASE_URL}/capture/stop`, { method: "POST" });
+export async function stopLiveCapture(createAnalysis: boolean = true): Promise<any> {
+  const res = await fetch(`${BASE_URL}/capture/stop?create_analysis=${createAnalysis}`, { method: "POST" });
+  return res.json();
+}
+
+export async function fetchCaptureStats(): Promise<CaptureStats> {
+  const res = await fetch(`${BASE_URL}/capture/stats`);
+  if (!res.ok) throw new Error("Failed to load capture stats");
+  return res.json();
+}
+
+export async function startReplay(jobId: string, speedMultiplier: number = 1.0): Promise<any> {
+  const res = await fetch(`${BASE_URL}/replay/start`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: jsonStringifySafe({ job_id: jobId, speed_multiplier: speedMultiplier }),
+  });
+  if (!res.ok) {
+    const err = await res.json();
+    throw new Error(err.detail || "Failed to start replay");
+  }
+  return res.json();
+}
+
+export async function stopReplay(): Promise<any> {
+  const res = await fetch(`${BASE_URL}/replay/stop`, { method: "POST" });
+  return res.json();
+}
+
+export async function fetchReplayStatus(): Promise<ReplayStatus> {
+  const res = await fetch(`${BASE_URL}/replay/status`);
+  if (!res.ok) throw new Error("Failed to load replay status");
   return res.json();
 }
 

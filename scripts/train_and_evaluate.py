@@ -28,6 +28,7 @@ def run_pipeline():
     data_dir = Path(r"C:\Users\Sathish-PhD\Downloads\MachineLearningCSV\CIC-IDS- 2017")
     portscan_file = data_dir / "Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv"
     benign_file = data_dir / "Monday-WorkingHours.pcap_ISCX.csv"
+    ddos_file = data_dir / "Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv"
 
     adapter = CICFlowCSVAdapter()
     tel_store = TelemetryStore(base_dir="data")
@@ -41,6 +42,11 @@ def run_pipeline():
         logger.info(f"Loading authentic PortScan Reconnaissance: {portscan_file.name}")
         scan_flows, s_rep = adapter.process_csv(portscan_file, max_rows=5000)
         all_flows.extend(scan_flows)
+
+        if ddos_file.exists():
+            logger.info(f"Loading authentic DDoS Impact: {ddos_file.name}")
+            ddos_flows, d_rep = adapter.process_csv(ddos_file, max_rows=25000)
+            all_flows.extend(ddos_flows)
     else:
         logger.warning("Authentic files not found at expected path. Using local sample.")
         return
@@ -112,9 +118,9 @@ def run_pipeline():
     trainer = WorldModelTrainer(
         model=world_model,
         lr=0.001,
-        lambda_state=1.0,
-        lambda_stage=1.0,
-        lambda_risk=1.0,
+        lambda_state=0.5,
+        lambda_stage=2.0,
+        lambda_risk=2.0,
         lambda_consistency=0.5,
         scheduled_sampling_k=10.0,
         checkpoint_dir="models",
@@ -122,18 +128,20 @@ def run_pipeline():
 
     # Scale training data
     norm_train_x = scaler.transform(train_tensors["x"])
+    norm_train_y_state = scaler.transform(train_tensors["y_state"])
     train_ds = torch.utils.data.TensorDataset(
         torch.tensor(norm_train_x, dtype=torch.float32),
-        train_tensors["y_state"],
+        torch.tensor(norm_train_y_state, dtype=torch.float32),
         train_tensors["y_stage"],
         train_tensors["y_risk"],
     )
     train_loader = torch.utils.data.DataLoader(train_ds, batch_size=32, shuffle=True)
 
     norm_val_x = scaler.transform(val_tensors["x"])
+    norm_val_y_state = scaler.transform(val_tensors["y_state"])
     val_ds = torch.utils.data.TensorDataset(
         torch.tensor(norm_val_x, dtype=torch.float32),
-        val_tensors["y_state"],
+        torch.tensor(norm_val_y_state, dtype=torch.float32),
         val_tensors["y_stage"],
         val_tensors["y_risk"],
     )

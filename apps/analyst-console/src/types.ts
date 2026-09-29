@@ -160,3 +160,23 @@ export interface TopologyLink {
   flows: number;
   bytes: number;
 }
+
+export interface CaptureStats {
+  is_running: boolean;
+  total_captured: number;
+  dropped_packets: number;
+  queue_size: number;
+  max_queue_size: number;
+  queue_pressure_pct: number;
+  active_sessions_count: number;
+}
+
+export interface ReplayStatus {
+  is_running: boolean;
+  job_id: string | null;
+  speed_multiplier: number;
+  total_flows: number;
+  replayed_flows: number;
+  current_timestamp: number;
+}
+

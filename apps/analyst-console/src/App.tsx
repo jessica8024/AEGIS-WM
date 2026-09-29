@@ -9,6 +9,7 @@ import {
   UploadCloud,
   Bell,
   AlertOctagon,
+  Cpu,
 } from "lucide-react";
 import { Header } from "./components/Header";
 import { OverviewView } from "./components/OverviewView";
@@ -18,6 +19,7 @@ import { FlowEvidenceView } from "./components/FlowEvidenceView";
 import { ExplanationView } from "./components/ExplanationView";
 import { EvaluationView } from "./components/EvaluationView";
 import { ImportCaptureView } from "./components/ImportCaptureView";
+import { SimulationView } from "./components/SimulationView";
 import {
   fetchAnalyses,
   fetchAlerts,
@@ -28,7 +30,7 @@ import { AlertRecord, AnalysisJob, TimelinePayload } from "./types";
 
 export const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<
-    "overview" | "timeline" | "topology" | "flows" | "explanation" | "evaluation" | "capture"
+    "overview" | "timeline" | "topology" | "flows" | "explanation" | "evaluation" | "capture" | "simulation"
   >("overview");
 
   const [health, setHealth] = useState<any>(null);
@@ -188,6 +190,19 @@ export const App: React.FC = () => {
             <span>Import / Capture</span>
           </button>
 
+          <button
+            className={`nav-btn ${activeTab === "simulation" ? "nav-btn-active" : ""}`}
+            onClick={() => setActiveTab("simulation")}
+            style={{
+              background: activeTab === "simulation" ? "" : "linear-gradient(135deg,#7f1d1d22,#0f172a)",
+              border: activeTab !== "simulation" ? "1px solid #7f1d1d55" : "",
+              color: activeTab === "simulation" ? "" : "#fca5a5",
+            }}
+          >
+            <Cpu size={16} />
+            <span>Simulation</span>
+          </button>
+
           {/* Active Alert Indicator Badge at bottom of sidebar */}
           <div style={{ marginTop: "auto", padding: "12px 8px" }}>
             <div
@@ -262,6 +277,10 @@ export const App: React.FC = () => {
               analyses={analyses}
               onRefreshAnalyses={() => fetchAnalyses().then(setAnalyses)}
             />
+          )}
+
+          {activeTab === "simulation" && (
+            <SimulationView />
           )}
         </main>
       </div>

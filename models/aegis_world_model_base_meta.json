@@ -1,9 +1,9 @@
 {
   "dataset": "CIC-IDS-2017",
-  "train_samples": 301,
-  "test_samples": 47,
+  "train_samples": 759,
+  "test_samples": 145,
   "epochs": 10,
-  "checkpoint_sha256": "4029039b156e8d577d66de3e17559d88436f9c69b023e1d1dc30809023a8b29f",
+  "checkpoint_sha256": "22d8253a128fac016936ddfd8c0f297fef851834d4aa20f0e40f63d68d7f848c",
   "architecture": "TemporalWorldModel",
   "feature_dim": 36,
   "latent_dim": 64,

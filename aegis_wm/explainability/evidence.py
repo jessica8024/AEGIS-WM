@@ -1,6 +1,6 @@
 """Evidence linker connecting forecast attributions to underlying network flows and host entities."""
 
-from typing import Dict, List, Optional
+from typing import Any, Dict, List, Optional
 import numpy as np
 import torch
 from aegis_wm.explainability.attribution import AttributionEngine
@@ -19,9 +19,15 @@ from aegis_wm.storage.telemetry import TelemetryStore
 class EvidenceLinker:
     """Extracts entity attributions and supporting flow records backing a forecast trajectory."""
 
-    def __init__(self, model: TemporalWorldModel, telemetry_store: TelemetryStore):
+    def __init__(
+        self,
+        model: TemporalWorldModel,
+        telemetry_store: TelemetryStore,
+        scaler: Optional[Any] = None,
+    ):
         self.attribution_engine = AttributionEngine(model)
         self.telemetry_store = telemetry_store
+        self.scaler = scaler
 
     def build_explanation(
         self,
@@ -40,7 +46,11 @@ class EvidenceLinker:
         """
         if x_norm_tensor is None:
             raw_feats = [w.feature_vector for w in context_windows]
-            x_norm_tensor = torch.tensor([raw_feats], dtype=torch.float32)
+            if self.scaler is not None:
+                x_scaled = self.scaler.transform(np.array([raw_feats], dtype=np.float32))
+                x_norm_tensor = torch.tensor(x_scaled, dtype=torch.float32)
+            else:
+                x_norm_tensor = torch.tensor([raw_feats], dtype=torch.float32)
 
         # 1. Feature and temporal attributions
         top_features, temporal_attrs = self.attribution_engine.attribute_features(x_norm_tensor)

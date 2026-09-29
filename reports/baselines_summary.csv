@@ -1,5 +1,5 @@
 model,type,auroc,auprc,brier_score,macro_f1,accuracy
 persistence_forecaster,persistence,,,,,
-logistic_regression_static,static_linear,1.0,1.0,0.006846464224765855,1.0,1.0
-random_forest_static,static_tree_ensemble,1.0,1.0,0.0015489361702127656,1.0,1.0
-lstm_temporal_classifier,temporal_sequence_no_transition,1.0,1.0,4.094991527381353e-05,1.0,1.0
+logistic_regression_static,static_linear,0.22627737226277372,0.8995676135593089,0.05071382510435382,0.5986555950968762,0.9517241379310345
+random_forest_static,static_tree_ensemble,0.9849452554744526,0.999155048086915,0.02517793103448276,0.9155175762283938,0.9793103448275862
+lstm_temporal_classifier,temporal_sequence_no_transition,0.9781021897810219,0.9987791618067104,0.07005173712968826,0.7753837487677792,0.9241379310344827
